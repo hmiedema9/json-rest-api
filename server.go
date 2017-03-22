@@ -1,3 +1,6 @@
+/*
+	Server written in Go
+*/
 package main
 
 import (

@@ -1,3 +1,8 @@
+/*
+	Class to serve as the router for a JSON REST API configured in Go
+	This uses the mux router from gorilla. In order to run, first install
+	the router with 'go get -u github.com/gorilla/mux'
+*/
 package main
 
 import (
