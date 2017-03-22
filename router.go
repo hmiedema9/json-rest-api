@@ -6,6 +6,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -13,26 +14,41 @@ import (
 	"github.com/gorilla/mux"
 )
 
+type Language struct {
+	Name       string
+	Experience int
+	Difficulty int
+}
+
+type Languages []Language
+
 func main() {
 
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", Index)
-	router.HandleFunc("/todos", TodoIndex)
-	router.HandleFunc("/todos/{todoId}", TodoShow)
+	router.HandleFunc("/Contact", Contact)
+	router.HandleFunc("/Languages/{languageId}", LanguageIndex)
 
-	log.Fatal(http.ListenAndServe(":8080", router))
+	log.Fatal(http.ListenAndServe(":8000", router))
 }
 
 func Index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "Welcome!")
 }
 
-func TodoIndex(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintln(w, "Todo Index!")
+func Contact(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintln(w, "Contact Page!")
 }
 
-func TodoShow(w http.ResponseWriter, r *http.Request) {
-	vars := mux.Vars(r)
-	todoId := vars["todoId"]
-	fmt.Fprintln(w, "Todo show:", todoId)
+func LanguageIndex(w http.ResponseWriter, r *http.Request) {
+	// vars := mux.Vars(r)
+	// languageId := vars["languageId"]
+	// fmt.Fprintln(w, "Programming Language ID:", languageId)
+
+	languages := Languages{
+		Language{Name: "Go"},
+		Language{Name: "C#"},
+	}
+
+	json.NewEncoder(w).Encode(languages)
 }
