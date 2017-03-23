@@ -32,4 +32,10 @@ var routes = Routes{
 		"/languages/{languageId}",
 		LanguageShow,
 	},
+	Route{
+		"LanguageCreate",
+		"POST",
+		"/languages",
+		LanguageCreate,
+	},
 }
