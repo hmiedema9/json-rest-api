@@ -7,7 +7,7 @@ import (
 
 	"api.jwt.auth/controllers"
 	"api.jwt.auth/core/authentication"
-	"github.com/codegangsta/negroni"
+	"github.com/urfave/negroni"
 )
 
 func main() {
